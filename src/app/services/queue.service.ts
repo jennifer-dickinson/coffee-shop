@@ -25,7 +25,7 @@ export class QueueService {
       // ** problem area ** //
       this.drinkOnCounter.next(null);
       this.pop();
-    }, drink.time * 3000);
+    }, 3000);
   }
 
 
