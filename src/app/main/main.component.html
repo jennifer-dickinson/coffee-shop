@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      The Coffee Shop
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <ion-text>Order A Drink</ion-text>
+    <ion-button (click)="addDrink('Cafe Au Lait', 4)">
+      Cafe Au Lait - 4 seconds
+    </ion-button>
+    <ion-button (click)="addDrink('Cappuccino', 10)">
+      Cappuccino - 10 seconds
+    </ion-button>
+    <ion-button (click)="addDrink('Expresso', 15)">
+      Expresso - 15 seconds
+    </ion-button>
+
+    <ion-card>
+      Current Orders:
+      <ul>
+        <li *ngFor="let drink of drinkQueue | async"> {{drink.name}} -  {{drink.time}} seconds</li>
+      </ul>
+    </ion-card>
+  </div>
+</ion-content>
