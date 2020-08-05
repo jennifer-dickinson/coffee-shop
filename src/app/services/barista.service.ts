@@ -27,7 +27,7 @@ export class BaristaService {
     setTimeout(() => {
       console.log("Done with ", drink);
       this.busy = false;
-      this.queueService.pop();
+      this.queueService.placeOnCounter();
     }, drink.time * 1000);
   }
 }

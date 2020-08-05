@@ -12,9 +12,11 @@ import { Drink } from '../model/drink.model';
 export class MainComponent implements OnInit {
 
   drinkQueue;
+  counterDrink;
 
   constructor(public barista: BaristaService, public queueService: QueueService) {
     this.drinkQueue = queueService.getQueue();
+    this.counterDrink = queueService.drinkOnCounter.asObservable();
   }
 
   ngOnInit() {}

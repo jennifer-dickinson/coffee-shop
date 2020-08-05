@@ -11,7 +11,7 @@
 
     <ion-card>
       <ion-item-divider>
-        <ion-text>Order A Drink</ion-text>
+        <ion-text>The Menu</ion-text>
 
       </ion-item-divider>
         <ion-item>
@@ -26,20 +26,27 @@
           </ion-button>
         </ion-item>
 
-      <div>
         <ion-item-divider>
           <ion-label>
-            Now preparing
+            The Coffee Counter
+          </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          {{(counterDrink | async)?.name || "Empty"}}
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label>
+            Barista now preparing
           </ion-label>
         </ion-item-divider>
         <ion-item *ngIf = "(drinkQueue | async).length  > 0">
-          {{(drinkQueue | async)[0].name}}
+          {{ (counterDrink | async)? "Barista is waiting" : (drinkQueue | async)[0].name}}
         </ion-item>
         <ion-item *ngIf = "(drinkQueue | async).length  == 0">
           Nothing at the moment - order something!
         </ion-item>
 
-      </div>
       <ion-item-divider>
         <ion-label>Next Orders</ion-label>
       </ion-item-divider>

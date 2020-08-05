@@ -7,11 +7,28 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class QueueService {
   queue_: Drink[];
+
+  drinkOnCounter: BehaviorSubject<Drink>;
+
   queue: BehaviorSubject<Drink[]>;
   constructor() {
     this.queue_ = [];
     this.queue = new BehaviorSubject(this.queue_);
+    this.drinkOnCounter = new BehaviorSubject(null);
   }
+
+  placeOnCounter() {
+    const drink = this.top();
+    console.log("Counter:", drink);
+    this.drinkOnCounter.next(drink);
+    setTimeout(() => {
+      // ** problem area ** //
+      this.drinkOnCounter.next(null);
+      this.pop();
+    }, drink.time * 3000);
+  }
+
+
   getQueue() {
     return this.queue.asObservable();
   }
