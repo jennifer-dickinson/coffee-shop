@@ -7,22 +7,46 @@
 </ion-header>
 <ion-content>
   <div class="container">
-    <ion-text>Order A Drink</ion-text>
-    <ion-button (click)="addDrink('Cafe Au Lait', 4)">
-      Cafe Au Lait - 4 seconds
-    </ion-button>
-    <ion-button (click)="addDrink('Cappuccino', 10)">
-      Cappuccino - 10 seconds
-    </ion-button>
-    <ion-button (click)="addDrink('Expresso', 15)">
-      Expresso - 15 seconds
-    </ion-button>
+
 
     <ion-card>
-      Current Orders:
-      <ul>
-        <li *ngFor="let drink of drinkQueue | async"> {{drink.name}} -  {{drink.time}} seconds</li>
-      </ul>
+      <ion-item-divider>
+        <ion-text>Order A Drink</ion-text>
+
+      </ion-item-divider>
+        <ion-item>
+          <ion-button (click)="addDrink('Cafe Au Lait', 4)">
+            Cafe Au Lait - 4s
+          </ion-button>
+          <ion-button (click)="addDrink('Cappuccino', 10)">
+            Cappuccino - 10s
+          </ion-button>
+          <ion-button (click)="addDrink('Expresso', 15)">
+            Expresso - 15s
+          </ion-button>
+        </ion-item>
+
+      <div>
+        <ion-item-divider>
+          <ion-label>
+            Now preparing
+          </ion-label>
+        </ion-item-divider>
+        <ion-item *ngIf = "(drinkQueue | async).length  > 0">
+          {{(drinkQueue | async)[0].name}}
+        </ion-item>
+        <ion-item *ngIf = "(drinkQueue | async).length  == 0">
+          Nothing at the moment - order something!
+        </ion-item>
+
+      </div>
+      <ion-item-divider>
+        <ion-label>Next Orders</ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let drink of drinkQueue | async | slice: 1"> {{drink.name}} -  {{drink.time}} seconds</ion-item>
+      <ion-item *ngIf="(drinkQueue | async).length < 2">
+        Nothing queued up.
+      </ion-item>
     </ion-card>
   </div>
 </ion-content>
